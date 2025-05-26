@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royaume & Bienvenu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .heart {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff0055, #ff00aa, #ff55aa, #ffaaff);
+            transform: rotate(45deg);
+            animation: pulse 2s linear infinite;
+            box-shadow: 0 0 100px #ff0055;
+            z-index: 2;
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff0055, #ff00aa, #ff55aa, #ffaaff);
+            border-radius: 50%;
+        }
+        
+        .heart:before {
+            top: -150px;
+            left: 0;
+        }
+        
+        .heart:after {
+            top: 0;
+            left: -150px;
+        }
+        
+        .photos-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-45deg);
+            width: 220px;
+            height: 220px;
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+        
+        .photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid white;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+            margin: 5px;
+            transition: transform 0.5s ease;
+        }
+        
+        .photo:hover {
+            transform: scale(1.1);
+        }
+        
+        .names {
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 0 5px rgba(255, 0, 170, 0.8);
+            margin-top: 5px;
+        }
+        
+        .message {
+            position: absolute;
+            bottom: 20%;
+            width: 100%;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 10px #ff00aa;
+            white-space: nowrap;
+            animation: scroll 15s linear infinite;
+            z-index: 10;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .particles span {
+            position: absolute;
+            display: block;
+            width: 5px;
+            height: 5px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #fff,
+                        0 0 20px #fff,
+                        0 0 40px #ff00aa,
+                        0 0 80px #ff00aa;
+            animation: animate 5s linear infinite;
+            opacity: 0;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: rotate(45deg) scale(1);
+                box-shadow: 0 0 100px #ff0055;
+            }
+            50% {
+                transform: rotate(45deg) scale(1.1);
+                box-shadow: 0 0 150px #ff00aa;
+            }
+            100% {
+                transform: rotate(45deg) scale(1);
+                box-shadow: 0 0 100px #ff0055;
+            }
+        }
+        
+        @keyframes scroll {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+        
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        
+        .glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,0,170,0.3) 0%, rgba(255,0,170,0) 70%);
+            animation: glow-pulse 3s ease-in-out infinite;
+            z-index: 0;
+        }
+        
+        @keyframes glow-pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.4;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.7;
+            }
+        }
+        
+        .couple-names {
+            position: absolute;
+            top: 65%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            text-shadow: 0 0 10px #ff00aa;
+            z-index: 10;
+            white-space: nowrap;
+            animation: name-glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes name-glow {
+            0% {
+                text-shadow: 0 0 5px #ff00aa;
+            }
+            100% {
+                text-shadow: 0 0 20px #ff00aa, 0 0 30px #ff0055;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="glow"></div>
+        <div class="heart"></div>
+        <div class="photos-container">
+            <img src="file:///C:/Users/maeva/Desktop/Mon%20site%20mifa/royaume/bae3.jpg" alt="Royaume" class="photo" id="woman-photo">
+            <img src="file:///C:/Users/maeva/Desktop/Mon%20site%20mifa/royaume/photo_2025-05-26_17-26-20.jpg" alt="Bienvenu" class="photo" id="man-photo">
+            <div class="names">Royaume & Bienvenu</div>
+        </div>
+        <div class="couple-names">Royaume ❤ Bienvenu</div>
+        <div class="message">Mon amour pour toi est infini comme les étoiles dans le ciel... ❤️</div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <script>
+        // Créer des particules
+        const particles = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const span = document.createElement('span');
+            span.style.left = Math.random() * window.innerWidth + 'px';
+            span.style.top = Math.random() * window.innerHeight + 'px';
+            span.style.width = Math.random() * 5 + 2 + 'px';
+            span.style.height = span.style.width;
+            span.style.animationDelay = Math.random() * 5 + 's';
+            span.style.animationDuration = Math.random() * 5 + 5 + 's';
+            particles.appendChild(span);
+        }
+        
+        // Changer les couleurs du cœur
+        const heart = document.querySelector('.heart');
+        const colors = [
+            'linear-gradient(45deg, #ff0055, #ff00aa, #ff55aa, #ffaaff)',
+            'linear-gradient(45deg, #ff0000, #ff6600, #ffcc00, #ff0066)',
+            'linear-gradient(45deg, #ff00cc, #cc00ff, #00ccff, #00ffcc)',
+            'linear-gradient(45deg, #ff1493, #ff69b4, #ffb6c1, #ff82ab)'
+        ];
+        
+        let currentColor = 0;
+        setInterval(() => {
+            heart.style.background = colors[currentColor];
+            heart.style.boxShadow = `0 0 100px ${colors[currentColor].split(',')[1].trim()}`;
+            currentColor = (currentColor + 1) % colors.length;
+        }, 3000);
+        
+        // Messages défilants alternatifs
+        const messages = [
+            "Tu es la plus belle étoile dans mon ciel... ✨",
+            "Mon cœur bat uniquement pour toi... 💓",
+            "Je t'aime plus que tout au monde... 🌍",
+            "Tu es la femme de mes rêves... 🌙",
+            "Avec toi, chaque instant est magique... 🔮",
+            "Ton sourire illumine ma vie... ☀️",
+            "Pour toujours et à jamais... ∞"
+        ];
+        
+        const messageElement = document.querySelector('.message');
+        let currentMessage = 0;
+        setInterval(() => {
+            currentMessage = (currentMessage + 1) % messages.length;
+            messageElement.textContent = messages[currentMessage];
+        }, 5000);
+        
+        // Effet spécial au clic
+        document.addEventListener('click', function() {
+            const heart = document.querySelector('.heart');
+            heart.style.transform = 'rotate(45deg) scale(1.2)';
+            setTimeout(() => {
+                heart.style.transform = 'rotate(45deg) scale(1)';
+            }, 300);
+            
+            // Ajouter une particule supplémentaire
+            const span = document.createElement('span');
+            span.style.left = Math.random() * window.innerWidth + 'px';
+            span.style.top = window.innerHeight + 'px';
+            span.style.width = Math.random() * 8 + 3 + 'px';
+            span.style.height = span.style.width;
+            span.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.getElementById('particles').appendChild(span);
+        });
+    </script>
+</body>
+</html>
